@@ -28,13 +28,13 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - uses: docker/build-push-action@v4
-        with:
-          context: ./src
-          file: ./src/Dockerfile
-          push: true
-          labels: |
-            org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
-            org.opencontainers.image.description="SSH Dev-Container"
-            org.opencontainers.image.licenses=MIT
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/basic-samba:latest
+      with:
+        context: ./src
+        file: ./src/Dockerfile
+        push: true
+        labels: |
+          org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+          org.opencontainers.image.description="SSH Dev-Container"
+          org.opencontainers.image.licenses=MIT
+        tags: |
+          ghcr.io/${{ github.repository_owner }}/basic-samba:latest
