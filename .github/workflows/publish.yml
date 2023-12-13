@@ -21,9 +21,20 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
       
-    - name: Build and push Docker images
-      uses: docker/build-push-action@v5.1.0
+    - uses: docker/login-action@v2
       with:
-        push: true
-        context: ./src
-        tags: ghcr.io/parzival-space/basic-samba:latest
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - uses: docker/build-push-action@v4
+        with:
+          context: ./src
+          file: ./src/Dockerfile
+          push: true
+          labels: |
+            org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+            org.opencontainers.image.description="SSH Dev-Container"
+            org.opencontainers.image.licenses=MIT
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/basic-samba:latest
