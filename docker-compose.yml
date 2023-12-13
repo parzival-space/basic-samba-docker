@@ -1,0 +1,14 @@
+services: 
+  samba: 
+#    build: 
+#      context: ./src
+#      dockerfile: Dockerfile
+    image: ghcr.io/parzival-space/basic-samba:latest
+    environment: 
+      - USER_NAME=foo
+      - USER_PASSWORD=admin
+      - SHARE_NAME=share
+    ports: 
+      - 445:445/tcp
+    volumes: 
+      - ./data:/media/share
