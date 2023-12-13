@@ -8,7 +8,10 @@ services:
       - USER_NAME=foo
       - USER_PASSWORD=admin
       - SHARE_NAME=share
-    ports: 
+    ports:
+      - 137:137/udp
+      - 138:138/udp
+      - 139:139/udp
       - 445:445/tcp
     volumes: 
       - ./data:/media/share
