@@ -32,6 +32,7 @@ jobs:
         context: ./src
         file: ./src/Dockerfile
         push: true
+        platforms: linux/arm/v7,linux/arm64/v8,linux/amd64
         labels: |
           org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
           org.opencontainers.image.description="SSH Dev-Container"
